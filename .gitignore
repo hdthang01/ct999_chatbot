@@ -1,0 +1,23 @@
+# Bỏ qua file dataset lớn
+Dataset_articles.csv
+
+# Bỏ qua file CSV khác
+*.csv
+
+# Bỏ qua thư mục cache và file tạm
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+.DS_Store
+
+# Bỏ qua file VSCode settings
+.vscode/
+.idea/
+
+# Bỏ qua file notebook checkpoints
+.ipynb_checkpoints/
+
+# Bỏ qua các file logs
+*.log
