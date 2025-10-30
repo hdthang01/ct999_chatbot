@@ -7,6 +7,9 @@ NewsBot là một chatbot Telegram có khả năng:
 - Sử dụng TF-IDF và Cosine Similarity để tìm các bài báo liên quan trong file CSV huấn luyện.
 
 ---
+# nguồn dataset
+https://www.kaggle.com/datasets/trvminh/vietnamese-news-data/data
+Vietnamese News Data
 
 ## ⚙️ 1. Cấu trúc dự án
 
