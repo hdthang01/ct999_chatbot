@@ -16,10 +16,14 @@ Vietnamese News Data
 ```
 📁 NewsBot/
 ├── giveinfonew_bot_smart.py     # Mã nguồn chính của bot
-├── Dataset_articles.csv         # Dữ liệu bài báo huấn luyện
+├── dataset/Dataset_articles.csv # Dữ liệu bài báo huấn luyện
 ├── requirements.txt             # Danh sách thư viện cần cài
 └── README.md                    # Hướng dẫn này
+└── embeds                    
+
 ```
+
+## GIẢI NÉN faiss_index.rar VÀO THƯ MỤC embeds
 
 ---
 
@@ -31,6 +35,13 @@ Vietnamese News Data
   ```bash
   python --version
   ```
+### tạo virtual environtment:
+python -m venv venv
+
+## tiến hành activate venv
+cd venv/Scripts
+./activate
+
 
 ### Bước 2: Cài thư viện cần thiết
 Tạo file `requirements.txt` với nội dung:
@@ -84,7 +95,7 @@ File `Dataset_articles.csv` cần có cấu trúc như sau:
 Chạy lệnh trong thư mục chứa file:
 
 ```bash
-python giveinfonew_bot_smart.py
+python giveinfonew_bot_smart.py hoặc giveinfonew_bot_semantic_improved.py
 ```
 
 Nếu thành công, bạn sẽ thấy log tương tự:
@@ -94,7 +105,6 @@ Nếu thành công, bạn sẽ thấy log tương tự:
 ✅ [LOG] TF-IDF ma trận khởi tạo thành công
 🚀 [LOG] Khởi động NewsBot Telegram...
 🤖 [LOG] Bot đang chạy — chờ tin nhắn người dùng...
-```
 
 👉 Khi thấy dòng cuối cùng, bot **đã sẵn sàng**.  
 Mở Telegram, tìm **username bot** bạn đã tạo, và bắt đầu chat.
@@ -143,3 +153,4 @@ Mở Telegram, tìm **username bot** bạn đã tạo, và bắt đầu chat.
 - **Phiên bản:** 1.0 — Tháng 10/2025  
 
 ---
+```
