@@ -250,8 +250,18 @@ async def reply(update: Update, context: ContextTypes.DEFAULT_TYPE):
         for i, r in enumerate(results, start=1):
             title = r['Title'] or 'Không có tiêu đề'
             summ = r['Summary'] or (r['Contents'][:300] + '...' if r['Contents'] else '')
-            msgs.append(f"{i}. {title} (score={r['score']:.3f})\n{summ}\n")
-        await update.message.reply_text('\n'.join(msgs))
+            url = r["URL"] or ""
+            if url:
+                msgs.append(f"*{i}. {title}* (score={r['score']:.3f})\n{summ}\n🔗 [Đọc thêm]({url})")
+            else:
+                msgs.append(f"*{i}. {title}* (score={r['score']:.3f})\n{summ}")
+
+        await update.message.reply_text(
+            '\n\n'.join(msgs),
+            parse_mode='Markdown',
+            disable_web_page_preview=False
+        )
+
         return
 
     # fallback
