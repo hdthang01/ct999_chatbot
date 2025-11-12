@@ -4,7 +4,7 @@
 NewsBot là một chatbot Telegram có khả năng:
 - Tìm kiếm và tóm tắt bài báo theo chủ đề người dùng nhập (VD: “giá vàng”, “bất động sản”, “COVID-19”...).
 - Giao tiếp cơ bản: chào hỏi, cảm ơn, hỏi ngày giờ, tên bot,...
-- Sử dụng TF-IDF và Cosine Similarity để tìm các bài báo liên quan trong file CSV huấn luyện.
+- SentenceTransformer/all-MiniLM-L6-v2 và FAISS
 
 ---
 # nguồn dataset
