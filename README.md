@@ -10,7 +10,6 @@ NewsBot là một chatbot Telegram có khả năng:
 # nguồn dataset
 https://www.kaggle.com/datasets/trvminh/vietnamese-news-data/data
 Vietnamese News Data
-
 ## ⚙️ 1. Cấu trúc dự án
 
 ```
@@ -24,7 +23,7 @@ Vietnamese News Data
 ```
 
 ## GIẢI NÉN faiss_index.rar VÀO THƯ MỤC embeds
-
+https://drive.google.com/file/d/1fx1oMvP4f-XviEi5mDxgqOoC_MK8j3s9/view?usp=sharing
 ---
 
 ## 💻 2. Cài đặt môi trường
@@ -40,18 +39,10 @@ python -m venv venv
 
 ## tiến hành activate venv
 cd venv/Scripts
-./activate
+activate
 
 
 ### Bước 2: Cài thư viện cần thiết
-Tạo file `requirements.txt` với nội dung:
-```txt
-python-telegram-bot==20.3
-pandas
-scikit-learn
-numpy
-```
-
 Cài đặt bằng lệnh:
 ```bash
 pip install -r requirements.txt
