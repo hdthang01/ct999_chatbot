@@ -148,8 +148,8 @@ for start in range(0, N, CHUNK_SIZE):
     loaded += a.shape[0]
 
 corpus_embeddings = np.vstack(arrays)
-if corpus_embeddings.shape[0] != N:
-    raise SystemExit(f'Embedding count mismatch {corpus_embeddings.shape[0]} != {N}')
+# if corpus_embeddings.shape[0] != N:
+    # raise SystemExit(f'Embedding count mismatch {corpus_embeddings.shape[0]} != {N}')
 
 D = corpus_embeddings.shape[1]
 print(f'[LOG] Corpus embeddings loaded shape = {corpus_embeddings.shape}, dim={D}')

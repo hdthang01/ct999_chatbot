@@ -1,0 +1,6 @@
+{
+  "model": "sentence-transformers/distiluse-base-multilingual-cased-v2",
+  "n": 313320,
+  "dim": 512,
+  "normalized": true
+}
