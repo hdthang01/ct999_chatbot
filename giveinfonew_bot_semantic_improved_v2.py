@@ -1,22 +1,3 @@
-"""
-Improved NewsBot (semantic) — CPU-friendly, resumable embedding build, FAISS search
-- Switched default embedding model to multilingual:
-  sentence-transformers/distiluse-base-multilingual-cased-v2
-- Incremental embedding: chunked encode + save parts (emb_part_{start}.npy)
-- Resume support: will skip parts already saved
-- Build FAISS IndexFlatIP (inner product) on normalized embeddings -> fast retrieval
-- Save final embeddings and faiss index for reuse
-
-Usage:
-1) pip install -q sentence-transformers faiss-cpu python-telegram-bot==20.6 pandas numpy python-dotenv
-2) prepare .env with BOT_TOKEN, DATA_PATH, EMBEDDING_MODEL(optional)
-3) run: python giveinfonew_bot_semantic_multilingual.py
-
-Notes:
-- Designed for machines WITHOUT GPU (defaults to cpu). If you have GPU, it will use it.
-- Tweak CHUNK_SIZE and BATCH_SIZE if you have memory constraints.
-"""
-
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters, ContextTypes
 import pandas as pd
@@ -36,8 +17,8 @@ load_dotenv()
 BOT_TOKEN = os.getenv('BOT_TOKEN')
 DATA_PATH = os.getenv('DATA_PATH', 'articles.csv')
 # default switched to multilingual model for Vietnamese/other languages
-EMBEDDING_MODEL = os.getenv('EMBEDDING_MODEL', 'sentence-transformers/distiluse-base-multilingual-cased-v2')
-CHUNK_SIZE = int(os.getenv('EMB_CHUNK_SIZE', '20000'))   # number of texts per saved part
+EMBEDDING_MODEL = os.getenv('EMBEDDING_MODEL', 'sentence-transformers/distiluse-base-multilingual-cased-v2') # cái này ok nè hẹ hẹ
+CHUNK_SIZE = int(os.getenv('EMB_CHUNK_SIZE', '20000'))   # 20k dòng mỗi chunk
 BATCH_SIZE = int(os.getenv('EMB_BATCH_SIZE', '32'))
 MIN_SCORE = float(os.getenv('MIN_SCORE', '0.12'))
 TOP_K = int(os.getenv('TOP_K', '3'))  # how many candidates to retrieve from FAISS
@@ -80,14 +61,13 @@ N = len(texts)
 print(f'[LOG] {N} documents')
 
 # ===== model init =====
-# auto detect device (will use cpu if no gpu available)
+# auto detect device 
 import torch
 DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
 print(f'[LOG] Loading embedding model {EMBEDDING_MODEL} on {DEVICE}')
 # instantiate model
 model = SentenceTransformer(EMBEDDING_MODEL, device=DEVICE)
 
-# try to set threads for CPU to speed up
 if DEVICE == 'cpu':
     import os
     ncpu = os.cpu_count() or 1
@@ -95,8 +75,7 @@ if DEVICE == 'cpu':
     os.environ['OMP_NUM_THREADS'] = str(ncpu)
     os.environ['MKL_NUM_THREADS'] = str(ncpu)
 
-# ===== resumeable chunked encoding =====
-# parts named emb_part_{start}.npy where start is 0, CHUNK_SIZE, 2*CHUNK_SIZE, ...
+# ===== chunked encoding =====
 part_files = {}
 for start in range(0, N, CHUNK_SIZE):
     fname = os.path.join(EMB_DIR, f'emb_part_{start}.npy')
