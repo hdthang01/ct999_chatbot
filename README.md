@@ -4,12 +4,12 @@
 NewsBot là một chatbot Telegram có khả năng:
 - Tìm kiếm và tóm tắt bài báo theo chủ đề người dùng nhập (VD: “giá vàng”, “bất động sản”, “COVID-19”...).
 - Giao tiếp cơ bản: chào hỏi, cảm ơn, hỏi ngày giờ, tên bot,...
-- SentenceTransformer/all-MiniLM-L6-v2 và FAISS
+- SentenceTransformer/Distiluse-base-multilingual-cased-v2 và FAISS
 
 ---
 # nguồn dataset
-https://www.kaggle.com/datasets/trvminh/vietnamese-news-data/data
-Vietnamese News Data
+https://www.kaggle.com/datasets/phamtheds/news-dataset-vietnameses
+News Dataset Vietnameses
 ## ⚙️ 1. Cấu trúc dự án
 
 ```
@@ -22,9 +22,6 @@ Vietnamese News Data
 
 ```
 
-## GIẢI NÉN faiss_index.rar VÀO THƯ MỤC embeds
-https://drive.google.com/file/d/1fx1oMvP4f-XviEi5mDxgqOoC_MK8j3s9/view?usp=sharing
----
 
 ## 💻 2. Cài đặt môi trường
 
@@ -38,8 +35,7 @@ https://drive.google.com/file/d/1fx1oMvP4f-XviEi5mDxgqOoC_MK8j3s9/view?usp=shari
 python -m venv venv
 
 ## tiến hành activate venv
-cd venv/Scripts
-activate
+venv/Scripts/activate
 
 
 ### Bước 2: Cài thư viện cần thiết
@@ -77,8 +73,6 @@ File `Dataset_articles.csv` cần có cấu trúc như sau:
    ```
    8278247397:AAHjnIM4772UO3dd6zPQhVrEdtiSF6Ezn48
    ```
-5. Sao chép token đó và dán vào biến `BOT_TOKEN` trong file `giveinfonew_bot_smart.py`.
-
 ---
 
 ## 🚀 5. Chạy bot
@@ -86,7 +80,7 @@ File `Dataset_articles.csv` cần có cấu trúc như sau:
 Chạy lệnh trong thư mục chứa file:
 
 ```bash
-python giveinfonew_bot_smart.py hoặc giveinfonew_bot_semantic_improved.py
+python giveinfonew_bot_smart.py hoặc giveinfonew_bot_semantic_improved_v2
 ```
 
 Nếu thành công, bạn sẽ thấy log tương tự:
